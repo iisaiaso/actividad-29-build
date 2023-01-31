@@ -1,0 +1,38 @@
+<div class="px-3 py-3">
+  <h1 class="text-center pt-5">Agregar Articulo</h1>
+  <form [formGroup]="formProduct">
+    <div mat-dialog-content class="contenedor">
+      <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>Ingrese Codigo</mat-label>
+        <input matInput 
+        formControlName="codigo"
+        value="0" />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>Ingrese Descripcion</mat-label>
+        <input matInput
+        formControlName="descripcion"
+        />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>Ingrese Precio</mat-label>
+        <input matInput 
+        formControlName="precio"
+        value="0" />
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions class="buton">
+      <button mat-raised-button
+      color="warn"
+      class="ml-3"
+      (click)="onNoClick()"><mat-icon>disabled_by_default</mat-icon>Cancelar</button>
+      <button mat-raised-button
+      color="primary"
+      class="mr-3"
+      (click)="onSaveProdut()"><mat-icon>save</mat-icon> Confirmar</button>
+      <!-- <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button> -->
+    </div>
+  </form>
+</div>

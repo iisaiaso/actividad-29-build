@@ -1,26 +1,9 @@
+import { EliminarComponent } from './components/eliminar/eliminar.component';
 import { Component, OnInit } from '@angular/core';
-import { Producto } from 'src/iterfaces/producto';
+import { MatDialog } from '@angular/material/dialog';
+import { Producto } from 'src/app/iterfaces/producto';
+import { AgregarComponent } from './components/agregar/agregar.component';
 import { ProductoService } from './services/producto.service';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-];
 
 @Component({
   selector: 'app-root',
@@ -28,17 +11,41 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  title = 'actividad29-build';
+  // producto!: Producto[]
+  dataSource!: Producto[];
+  displayedColumns: string[] = ['Codigo', 'Descripcion', 'Precio', 'Accion'];
 
-  producto!: Producto[]
-  constructor(private productoService: ProductoService) { }
-  
+  constructor(private productoService: ProductoService, public dialog: MatDialog) { }
+
   ngOnInit(): void {
-     this.productoService.getPoduct().subscribe(res =>{
-        this.producto = res
-     })
+    this.productoService.getPoduct().subscribe(res => {
+      this.dataSource = res.sort((a, b) => {return a.codigo - b.codigo});
+      console.log(this.dataSource);
+    })
   }
 
-  title = 'actividad29-build';
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AgregarComponent, {
+      enterAnimationDuration: '800ms',
+      exitAnimationDuration: '200ms'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  openDialogEliminar(eliminarProducto: Producto): void {
+    console.log(eliminarProducto);
+
+    this.dialog.open(EliminarComponent, {
+      data: eliminarProducto,
+      width: '280px',
+      enterAnimationDuration: '1000ms',
+      exitAnimationDuration: '100ms'
+
+    })
+  }
+
+
 }

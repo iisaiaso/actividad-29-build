@@ -1,0 +1,24 @@
+.btn {
+  padding-top: 23px;
+  padding-bottom: 23px;
+  color: white;
+  background-color: #40a643;
+  box-shadow: 2px 2px 20px 1px rgba(0, 0, 0, 0.24);
+  cursor: pointer;
+  transition: 0.1s all;
+}
+.btn:hover {
+    transform:scale(1.03);
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
+/* .mat-elevation-z8{
+  border: #46b049 2px solid;
+} */
+.row{
+  background-color: #ECEAEA ;
+}
+.head{
+  background-color:#EAD6C3;
+  border-bottom: #393939 solid 3px;
+}

@@ -1,48 +1,46 @@
+<app-header></app-header>
 <div class="w-[40%] mx-auto mt-5">
-  <div class="mb-2">
-    <button mat-raised-button color="primary">Agregar articulo</button>
+  <div class="mb-3">
+    <button class="btn" mat-button 
+    (click)="openDialog()">
+    <mat-icon class="text-white">add_box</mat-icon>
+    <span class="text-white">Agregar articulo</span></button>
    </div>
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
   
-    <!-- Position Column -->
-    <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef> Codigo</th>
-      <td mat-cell *matCellDef="let element">{{element.position}}</td>
+    <!-- Codigo Column -->
+    <ng-container matColumnDef="Codigo">
+      <th mat-header-cell *matHeaderCellDef > Codigo</th>
+      <td mat-cell *matCellDef="let element"  style="text-align: center;">{{element.codigo}}</td>
     </ng-container>
   
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
+    <!-- Descripcion Column -->
+    <ng-container matColumnDef="Descripcion">
       <th mat-header-cell *matHeaderCellDef> Descripción</th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      <td mat-cell *matCellDef="let element" > {{element.descripcion}} </td>
     </ng-container>
   
-    <!-- Weight Column -->
-    <ng-container matColumnDef="weight">
-      <th mat-header-cell *matHeaderCellDef> Precio </th>
-      <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+    <!-- Precio Column -->
+    <ng-container matColumnDef="Precio">
+      <th mat-header-cell *matHeaderCellDef  style="text-align: center;"> Precio </th>
+      <td mat-cell *matCellDef="let element" style="text-align: center;">{{element.precio | currency:'S/ '}} </td>
     </ng-container>
   
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="symbol">
-      <th mat-header-cell *matHeaderCellDef> Accion </th>
-      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+    <!-- Accion Column -->
+    <ng-container matColumnDef="Accion">
+      <th mat-header-cell *matHeaderCellDef  style="text-align: center;"> Accion </th>
+      <td mat-cell *matCellDef="let element" style="text-align: center;"> <button mat-raised-button color="warn"
+        (click)=" openDialogEliminar(element)"
+        >Borrar <mat-icon>delete</mat-icon> </button></td>
     </ng-container>
 
-    <!-- <ng-container matColumnDef="pera">
-      <th mat-header-cell > fruta </th>
-      <td mat-cell > pera</td>
-    </ng-container> -->
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" class="head"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="row"></tr>
   </table>
-</div>
-
-<div *ngFor="let item of producto">
-{{item | json}}
 </div>
 
 

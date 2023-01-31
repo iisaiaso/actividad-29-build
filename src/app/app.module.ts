@@ -1,3 +1,4 @@
+import { ComponentsModule } from './components/components.module';
 import { NgModule } from '@angular/core';
 import { environment } from '../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
@@ -7,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { AppRoutingModule } from './app-routing.module';
 
 var config = {
   apiKey: environment.firebase.apiKey,
@@ -26,6 +28,8 @@ var config = {
     MaterialModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
+    ComponentsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
